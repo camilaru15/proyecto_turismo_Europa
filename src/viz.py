@@ -30,16 +30,31 @@ def plot_top_countries(df, top_n=10):
 
 def plot_domestic_vs_international(df):
     data = (
-        df.groupby("is_international")["OBS_VALUE"]
+        df.groupby("tourism_type")["OBS_VALUE"]
         .sum()
-        .rename({0: "Nacional", 1: "Internacional"})
+        .reset_index()
+    )
+    plt.figure(figsize=(8, 5))
+
+    ax = sns.barplot(
+        data=data,
+        x="tourism_type",
+        y="OBS_VALUE"
     )
 
-    plt.figure(figsize=(6,4))
-    sns.barplot(x=data.index, y=data.values)
-    plt.title("Turismo nacional vs internacional")
+    # Agregar etiquetas numéricas
+    for i, value in enumerate(data["OBS_VALUE"]):
+        ax.text(
+            i,
+            value,
+            f"{value:,.0f}",
+            ha="center",
+            va="bottom"
+        )
+        
+    plt.title("Turismo nacional vs internacional", fontsize=14)
     plt.xlabel("Tipo de turismo")
-    plt.ylabel("Número de estancias")
+    plt.ylabel("Número total de estancias")
     plt.tight_layout()
     plt.show()
 

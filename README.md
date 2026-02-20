@@ -1,7 +1,7 @@
 # Pandas & Data Visualization Project  
 ## Análisis del Turismo en Europa
 
-## 📌 Objetivo del proyecto
+## Objetivo del proyecto
 El objetivo de este proyecto es realizar un **Análisis Exploratorio de Datos (EDA) reproducible** utilizando Python, Pandas y herramientas de visualización, a partir de un dataset real sobre turismo en Europa.  
 Se busca identificar patrones temporales, geográficos y diferencias entre turismo nacional e internacional.
 
