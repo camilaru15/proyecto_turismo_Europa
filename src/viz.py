@@ -12,25 +12,42 @@ def plot_tourism_by_year(df):
     plt.tight_layout()
     plt.show()
 
-def plot_top_countries(df):
-    latest_year = df["TIME_PERIOD"].max()
-
+def plot_top_countries(df, top_n=10):
     data = (
-        df[df["TIME_PERIOD"] == latest_year]
-        .groupby("GEO")["OBS_VALUE"]
+        df.groupby("geo")["OBS_VALUE"]
         .sum()
         .sort_values(ascending=False)
-        .head(5)
-        .reset_index()
+        .head(top_n)
     )
 
-    plt.figure(figsize=(10,5))
-    sns.barplot(data=data, x="GEO", y="OBS_VALUE")
-    plt.title(f"Top 5 países con más turismo ({latest_year})")
-    plt.xlabel("País")
-    plt.ylabel("Número de estancias")
-    plt.xticks(rotation=45)
+    plt.figure(figsize=(10,6))
+    sns.barplot(x=data.values, y=data.index)
+    plt.title(f"Top {top_n} países con mayor número de estancias")
+    plt.xlabel("Número de estancias")
+    plt.ylabel("País")
     plt.tight_layout()
     plt.show()
 
-    return data
+def plot_domestic_vs_international(df):
+    data = (
+        df.groupby("is_international")["OBS_VALUE"]
+        .sum()
+        .rename({0: "Nacional", 1: "Internacional"})
+    )
+
+    plt.figure(figsize=(6,4))
+    sns.barplot(x=data.index, y=data.values)
+    plt.title("Turismo nacional vs internacional")
+    plt.xlabel("Tipo de turismo")
+    plt.ylabel("Número de estancias")
+    plt.tight_layout()
+    plt.show()
+
+def plot_distribution_obs_value(df):
+    plt.figure(figsize=(8,5))
+    sns.histplot(df["OBS_VALUE"], bins=50, kde=True)
+    plt.title("Distribución del número de estancias")
+    plt.xlabel("Número de estancias")
+    plt.ylabel("Frecuencia")
+    plt.tight_layout()
+    plt.show()
