@@ -2,8 +2,8 @@
 ## Análisis del Turismo en Europa
 
 ## Objetivo del proyecto
-El objetivo de este proyecto es realizar un **Análisis Exploratorio de Datos (EDA) reproducible** utilizando Python, Pandas y herramientas de visualización, a partir de un dataset real sobre turismo en Europa.  
-Se busca identificar patrones temporales, geográficos y diferencias entre turismo nacional e internacional.
+El objetivo de este proyecto es realizar un **Análisis Exploratorio de Datos (EDA) reproducible** utilizando Python, Pandas y herramientas de visualización, a partir de un dataset real sobre turismo en Europa.
+Se busca identificar patrones temporales, geográficos y diferencias entre turismo nacional e internacional, además de evaluar el impacto de eventos externos como la pandemia.
 
 ---
 
@@ -12,6 +12,15 @@ Se busca identificar patrones temporales, geográficos y diferencias entre turis
 - **Formato**: CSV  
 - **Archivo**: `turismo_europa.csv`  
 - **Ubicación**: `data/raw/turismo_europa.csv`
+- **Periodo temporal:** 2012 – últimos años disponibles
+- **Unidad de medida:** Número total de estancias turísticas
+
+El dataset contiene información sobre el número de estancias turísticas en países y regiones de Europa, desglosadas por:
+- Año (TIME_PERIOD)
+- País o región (geo)
+- Tipo de residencia del turista (c_resid)
+- Tipo de actividad económica
+- Número total de estancias (OBS_VALUE)
 
 El dataset contiene información sobre el número de estancias turísticas en países y regiones de Europa, desglosadas por año, tipo de residencia del turista (nacional o extranjero) y otras dimensiones relevantes.
 
@@ -48,8 +57,8 @@ Se crearon las siguientes variables adicionales:
 
 - **decade**: década correspondiente al año de observación.
 - **log_obs_value**: transformación logarítmica del número de estancias para reducir asimetría.
-- **is_international**: variable binaria que identifica turismo internacional (`FOR`) frente a nacional (`DOM`).
-
+- **tourism_type:**: Clasificación entre turismo nacional e internacional
+Principales Hallazgos
 ---
 
 ## Visualizaciones realizadas
@@ -71,6 +80,13 @@ Cada visualización incluye título, etiquetas de ejes e interpretación en el n
 - La distribución de estancias es **asimétrica**, lo que justifica el uso de transformaciones logarítmicas.
 
 ---
+##  Tecnologias Usadas
+- Python
+- Pandas
+- NumPy
+- Matplotlib
+- Seaborn
+- Jupyter Notebook
 
 ##  Cómo ejecutar el proyecto
 
